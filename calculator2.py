@@ -13,6 +13,15 @@ class Calculator2:
             return "Error: Division by zero is undefined"
         return a / b
 
+    def anyMathExpression(self, expression):
+        try:
+            result = eval(expression)
+            return result
+        except ZeroDivisionError:
+            return "Error: Division by zero is undefined"
+        except Exception as e:
+            return f"Error: Invalid expression ({e})"
+
 
 def main():
     calc = Calculator2()
@@ -23,11 +32,12 @@ def main():
         print("2. SUBTRACT")
         print("3. MULTIPLY")
         print("4. DIVIDE")
-        print("5. EXIT")
+        print("5. EVALUATE ANY EXPRESSION")
+        print("6. EXIT")
 
         opertaion = input("Enter your choice: ")
 
-        if opertaion == "5":
+        if opertaion == "6":
             print("Exiting the program. Goodbye!")
             break
 
@@ -51,8 +61,14 @@ def main():
             # Handles unexpected errors
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
+
+        elif opertaion == "5":
+            expression = input("Enter any mathematical expression you want to evaluate: ")
+            result = calc.anyMathExpression(expression)
+            print(f"The result is: {result}")
+
         else:
-            print("Please select a valid operation (1, 2, 3, 4, or 5).")
+            print("Please select a valid operation (1, 2, 3, 4, 5 or 6).")
 
 
 if __name__ == "__main__":
